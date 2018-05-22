@@ -7,9 +7,12 @@ public class Customer {
 
 	private String name;
 	private ArrayList<Rental> rentals = new ArrayList<>();
+	private StringBuilder builder;
 
 	public Customer(String newname) {
 		name = newname;
+		
+		builder = new StringBuilder();
 	}
 
 	public void addRental(Rental rental) {
@@ -28,8 +31,10 @@ public class Customer {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
 		
-		String result = "Rental Record for " + this.getName() + "\n";
-		result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
+		builder.setLength(0); // resets the builder
+		
+		builder.append("Rental Record for " + this.getName() + "\n");
+		builder.append("\tTitle\t\tDays\tAmount\n");
 
 		for (Rental rental : rentals) {
 			
@@ -42,15 +47,15 @@ public class Customer {
 			frequentRenterPoints += rental.getMovie().getPriceCode().getFrequentRenterPoints(rental.getDaysRented());
 			
 			// show figures for this rental
-			result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t"
-					+ String.valueOf(thisAmount) + "\n";
+			builder.append(String.format("\t%s\t\t%d\t%s\n", 
+					rental.getMovie().getTitle(), rental.getDaysRented(), String.valueOf(thisAmount)));
 			
 			totalAmount += thisAmount;
 		}
 		// add footer lines
-		result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-		result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
-		return result;
+		builder.append("Amount owed is " + String.valueOf(totalAmount) + "\n");
+		builder.append("You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points");
+		return builder.toString();
 	}
 
 	private double amountFor(Rental rental) {
