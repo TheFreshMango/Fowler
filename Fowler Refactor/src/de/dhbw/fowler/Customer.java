@@ -6,18 +6,18 @@ import java.util.*;
 public class Customer {
 
 	private String name;
-	private Vector<Rental> rentals = new Vector<>();
+	private ArrayList<Rental> rentals = new ArrayList<>();
 
 	public Customer(String newname) {
 		name = newname;
 	}
 
 	public void addRental(Rental rental) {
-		rentals.addElement(rental);
+		rentals.add(rental);
 	}
 	
 	public void removeRental(Rental rental) {
-		rentals.removeElement(rental);
+		rentals.remove(rental);
 	}
 
 	public String getName() {
@@ -27,24 +27,24 @@ public class Customer {
 	public String statement() {
 		double totalAmount = 0;
 		int frequentRenterPoints = 0;
-		Enumeration<Rental> enum_rentals = rentals.elements();
+		
 		String result = "Rental Record for " + this.getName() + "\n";
 		result += "\t" + "Title" + "\t" + "\t" + "Days" + "\t" + "Amount" + "\n";
 
-		while (enum_rentals.hasMoreElements()) {
+		for (Rental rental : rentals) {
 			
 			double thisAmount = 0;
-			Rental each = (Rental) enum_rentals.nextElement();
 			
 			// determine amounts for each line
-			thisAmount = amountFor(each);
+			thisAmount = amountFor(rental);
 			
 			// add frequent renter points
-			frequentRenterPoints += each.getMovie().getPriceCode().getFrequentRenterPoints(each.getDaysRented());
+			frequentRenterPoints += rental.getMovie().getPriceCode().getFrequentRenterPoints(rental.getDaysRented());
 			
 			// show figures for this rental
-			result += "\t" + each.getMovie().getTitle() + "\t" + "\t" + each.getDaysRented() + "\t"
+			result += "\t" + rental.getMovie().getTitle() + "\t" + "\t" + rental.getDaysRented() + "\t"
 					+ String.valueOf(thisAmount) + "\n";
+			
 			totalAmount += thisAmount;
 		}
 		// add footer lines
@@ -53,10 +53,10 @@ public class Customer {
 		return result;
 	}
 
-	private double amountFor(Rental each) {
-		return each.getMovie()
+	private double amountFor(Rental rental) {
+		return rental.getMovie()
 				.getPriceCode()
-				.getAmount(each.getDaysRented());
+				.getAmount(rental.getDaysRented());
 	}
 
 }
