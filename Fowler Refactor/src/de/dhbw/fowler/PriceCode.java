@@ -35,6 +35,15 @@ public 	enum PriceCode {
 			
 			return amount;
 		}
+		
+		@Override
+		public int getFrequentRenterPoints(int daysRented) {
+
+			if(daysRented > 1) {
+				return 2;
+			}
+			return super.getFrequentRenterPoints(daysRented);
+		}
 	};
 	
 	PriceCode() {}
@@ -42,4 +51,9 @@ public 	enum PriceCode {
 	public double getAmount(int daysRented) {
 		return 0;
 	}
+	
+	public int getFrequentRenterPoints(int daysRented) {
+		return 1;
+	}
+	
 }
