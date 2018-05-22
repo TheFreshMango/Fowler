@@ -1,25 +1,21 @@
 package de.dhbw.fowler;
 public class Movie {
 
-	public static final int CHILDRENS = 2;
-	public static final int REGULAR = 0;
-	public static final int NEW_RELEASE = 1;
+	PriceCode priceCode;
 
 	private String title;
 
-	private int priceCode;
-
-	public Movie(String newtitle, int newpriceCode) {
+	public Movie(String newtitle, PriceCode newpriceCode) {
 		title = newtitle;
 		priceCode = newpriceCode;
 	}
 
-	public int getPriceCode() {
+	public PriceCode getPriceCode() {
 		return priceCode;
 	}
 
-	public void setPriceCode(int arg) {
-		priceCode = arg;
+	public void setPriceCode(PriceCode priceCode) {
+		priceCode = priceCode;
 	}
 
 	public String getTitle() {

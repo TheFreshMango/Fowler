@@ -8,6 +8,7 @@ import org.junit.runners.JUnit4;
 
 import de.dhbw.fowler.Customer;
 import de.dhbw.fowler.Movie;
+import de.dhbw.fowler.PriceCode;
 import de.dhbw.fowler.Rental;
 
 @RunWith(JUnit4.class)
@@ -22,9 +23,9 @@ public class TestFowler {
 		assertEquals(customerName, customer.getName());	
 		
 		
-		Movie movie1 = new Movie("Movie 1", Movie.NEW_RELEASE);
-		Movie movie2 = new Movie("Movie 2", Movie.REGULAR);
-		Movie movie3 = new Movie("Movie 3", Movie.CHILDRENS);
+		Movie movie1 = new Movie("Movie 1", PriceCode.NEW_RELEASE);
+		Movie movie2 = new Movie("Movie 2", PriceCode.REGULAR);
+		Movie movie3 = new Movie("Movie 3", PriceCode.CHILDRENS);
 		
 		
 		Rental rental1 = new Rental(movie1, 7);
@@ -55,11 +56,11 @@ public class TestFowler {
 		assertEquals(3, rental2.getDaysRented());
 		assertEquals(movie2, rental2.getMovie());
 		
-		assertEquals(Movie.REGULAR, movie2.getPriceCode());
+		assertEquals(PriceCode.REGULAR, movie2.getPriceCode());
 		assertEquals("Movie 2", movie2.getTitle());
 		
-		movie2.setPriceCode(5);
-		assertEquals(5, movie2.getPriceCode());
+		movie2.setPriceCode(PriceCode.NEW_RELEASE);
+		assertEquals(PriceCode.NEW_RELEASE, movie2.getPriceCode());
 				
 	}
 	
@@ -67,9 +68,9 @@ public class TestFowler {
 	@Test
 	public void testAmount() {
 		
-		Movie movie1 = new Movie("Movie 1", Movie.NEW_RELEASE);
-		Movie movie2 = new Movie("Movie 2", Movie.REGULAR);
-		Movie movie3 = new Movie("Movie 3", Movie.CHILDRENS);
+		Movie movie1 = new Movie("Movie 1", PriceCode.NEW_RELEASE);
+		Movie movie2 = new Movie("Movie 2", PriceCode.REGULAR);
+		Movie movie3 = new Movie("Movie 3", PriceCode.CHILDRENS);
 		
 		Rental rental1 = new Rental(movie1, 1);
 		Rental rental2 = new Rental(movie2, 1);
