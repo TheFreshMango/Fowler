@@ -41,10 +41,10 @@ public class Customer {
 		for (Rental rental : rentals) {
 			
 			// determine amounts for each line
-			thisAmount = amountFor(rental);
+			thisAmount = rental.getAmount();
 			
 			// add frequent renter points
-			frequentRenterPoints += rental.getMovie().getPriceCode().getFrequentRenterPoints(rental.getDaysRented());
+			frequentRenterPoints += rental.getFrequentRenterPoints();
 			
 			// show figures for this rental
 			builder.append(String.format("\t%s\t\t%d\t%s\n", 
@@ -58,12 +58,6 @@ public class Customer {
 		builder.append("You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points");
 		
 		return builder.toString();
-	}
-
-	private double amountFor(Rental rental) {
-		return rental.getMovie()
-				.getPriceCode()
-				.getAmount(rental.getDaysRented());
 	}
 
 }
