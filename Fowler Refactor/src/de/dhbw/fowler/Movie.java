@@ -1,3 +1,4 @@
+package de.dhbw.fowler;
 public class Movie {
 
 	public static final int CHILDRENS = 2;

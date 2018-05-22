@@ -1,3 +1,4 @@
+package de.dhbw.fowler;
 public class Rental {
 
 	private Movie movie;
