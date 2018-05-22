@@ -31,7 +31,7 @@ public 	enum PriceCode {
 	NEW_RELEASE() {
 		@Override
 		public double getAmount(int daysRented) {
-			double amount = 3;
+			double amount = daysRented * 3;
 			
 			return amount;
 		}
@@ -46,7 +46,7 @@ public 	enum PriceCode {
 		}
 	};
 	
-	PriceCode() {}
+	
 	
 	public double getAmount(int daysRented) {
 		return 0;

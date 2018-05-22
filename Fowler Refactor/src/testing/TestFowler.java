@@ -75,18 +75,22 @@ public class TestFowler {
 		Rental rental1 = new Rental(movie1, 1);
 		Rental rental2 = new Rental(movie2, 1);
 		Rental rental3 = new Rental(movie3, 1);
+		Rental rental4 = new Rental(movie1, 2); // new release with 2 days!
 		
 		Customer customer1 = new Customer("The one with rental1");
 		Customer customer2 = new Customer("The one with rental2");
 		Customer customer3 = new Customer("The one with rental3");
+		Customer customer4 = new Customer("The one with rental4");
 		
 		customer1.addRental(rental1);
 		customer2.addRental(rental2);
 		customer3.addRental(rental3);
+		customer4.addRental(rental4);
 		
 		System.out.println(customer1.statement());
 		System.out.println(customer2.statement());
 		System.out.println(customer3.statement());
+		System.out.println(customer4.statement());
 		
 		assertEquals("Rental Record for The one with rental1\n" + 
 				"	Title		Days	Amount\n" + 
@@ -105,6 +109,12 @@ public class TestFowler {
 				"	Movie 3		1	1.5\n" + 
 				"Amount owed is 1.5\n" + 
 				"You earned 1 frequent renter points", customer3.statement());
+		
+		assertEquals("Rental Record for The one with rental4\n" + 
+				"	Title		Days	Amount\n" + 
+				"	Movie 1		2	6.0\n" + 
+				"Amount owed is 6.0\n" + 
+				"You earned 2 frequent renter points", customer4.statement());
 		
 		
 	}
