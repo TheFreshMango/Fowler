@@ -1,7 +1,7 @@
 package de.dhbw.fowler;
 public class Movie {
 
-	PriceCode priceCode;
+	private PriceCode priceCode;
 
 	private String title;
 
@@ -21,4 +21,14 @@ public class Movie {
 	public String getTitle() {
 		return title;
 	}
+
+	public double getAmount(int daysRented) {
+		return priceCode.getAmount(daysRented);
+	}
+
+	public int getFrequentRenterPoints(int daysRented) {
+		return priceCode.getFrequentRenterPoints(daysRented);
+	}
+
+	
 }

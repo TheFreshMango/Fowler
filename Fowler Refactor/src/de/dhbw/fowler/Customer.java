@@ -1,7 +1,6 @@
 package de.dhbw.fowler;
 
-import java.lang.*;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Customer {
 
@@ -28,7 +27,8 @@ public class Customer {
 	}
 
 	public String statement() {
-		double totalAmount = 0;
+		
+		double totalRentalAmount = 0;
 		int frequentRenterPoints = 0;
 		
 		builder.setLength(0); // resets the builder
@@ -36,9 +36,9 @@ public class Customer {
 		builder.append("Rental Record for " + this.getName() + "\n");
 		builder.append("\tTitle\t\tDays\tAmount\n");
 
+		double thisAmount = 0;
+		
 		for (Rental rental : rentals) {
-			
-			double thisAmount = 0;
 			
 			// determine amounts for each line
 			thisAmount = amountFor(rental);
@@ -50,11 +50,13 @@ public class Customer {
 			builder.append(String.format("\t%s\t\t%d\t%s\n", 
 					rental.getMovie().getTitle(), rental.getDaysRented(), String.valueOf(thisAmount)));
 			
-			totalAmount += thisAmount;
+			totalRentalAmount += thisAmount;
 		}
+		
 		// add footer lines
-		builder.append("Amount owed is " + String.valueOf(totalAmount) + "\n");
+		builder.append("Amount owed is " + String.valueOf(totalRentalAmount) + "\n");
 		builder.append("You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points");
+		
 		return builder.toString();
 	}
 
